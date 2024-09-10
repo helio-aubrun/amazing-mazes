@@ -3,10 +3,16 @@ import random
 directions = [(0, 2), (0, -2), (2, 0), (-2, 0)]
 
 def init_labyrinthe(n):
-    labyrinthe = [['#'] * n for _ in range(n)]
+    labyrinthe = [['#'] * (n*2+1) for _ in range(n*2+1)]
+
+    
+    for i in range(n*2+1):
+        for j in range(n*2+1):
+            if (i % 2 != 0 and j % 2 != 0):  # Les positions paires auront des '.'
+                labyrinthe[i][j] = '.'
 
     labyrinthe[0][0] = '.'
-    labyrinthe[n-1][n-1] = '.'
+    labyrinthe[n*2][n*2] = '.'
     
     return labyrinthe
 
