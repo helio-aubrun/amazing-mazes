@@ -2,29 +2,30 @@ import random
 
 directions = [(0, 2), (0, -2), (2, 0), (-2, 0)]
 pile = []
-
+LIBRE = "."
+MUR = "#"
 
 def init_labyrinthe(n):
-    labyrinthe = [["#"] * (n) for _ in range(n)]
+    labyrinthe = [[MUR] * (n) for _ in range(n)]
 
     for i in range(n):
         for j in range(n):
             if i % 2 != 0 and j % 2 != 0:
-                labyrinthe[i][j] = "."
+                labyrinthe[i][j] = LIBRE
 
     return labyrinthe
 
 
 def entree_sortie(labyrinthe, n):
-    labyrinthe[0][0] = "."
-    labyrinthe[n - 1][n - 1] = "."
-    labyrinthe[1][0] = "."
-    labyrinthe[n - 2][n - 1] = "."
+    labyrinthe[0][0] = LIBRE
+    labyrinthe[n - 1][n - 1] = LIBRE
+    labyrinthe[1][0] = LIBRE
+    labyrinthe[n - 2][n - 1] = LIBRE
 
 
 def non_visite(x, y, n, labyrinthe):
     try:
-        return labyrinthe[x][y] == "." and [x, y] not in pile
+        return labyrinthe[x][y] == LIBRE and [x, y] not in pile
     except:
         return False
 
@@ -36,7 +37,7 @@ def creuser(labyrinthe, x, y, n):
         nx, ny = x + dx, y + dy
         if non_visite(nx, ny, n, labyrinthe):
             pile.append([nx, ny])
-            labyrinthe[x + dx // 2][y + dy // 2] = "."
+            labyrinthe[x + dx // 2][y + dy // 2] = LIBRE
             creuser(labyrinthe, nx, ny, n)
 
 

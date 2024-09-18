@@ -1,3 +1,5 @@
+LIBRE = "*"
+
 def lire_labyrinthe(fichier_labyrinthe):
     with open(fichier_labyrinthe + ".txt", "r") as fichier:
         labyrinthe = [list(ligne.strip()) for ligne in fichier.readlines()]
@@ -37,7 +39,7 @@ def resoudre_labyrinthe(labyrinthe, x, y):
         if resoudre_labyrinthe(labyrinthe, x, y - 1):
             return True
 
-        labyrinthe[x][y] = "*"
+        labyrinthe[x][y] = LIBRE
 
     return False
 

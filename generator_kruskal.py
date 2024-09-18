@@ -2,7 +2,8 @@ import random
 
 directions = [(0, 2), (0, -2), (2, 0), (-2, 0)]
 pile = []
-
+LIBRE = "."
+MUR = "#"
 
 class TrouverUnion:
     def __init__(self, n):
@@ -29,12 +30,12 @@ class TrouverUnion:
 
 
 def init_labyrinthe(n):
-    labyrinthe = [["#"] * n for _ in range(n)]
+    labyrinthe = [[MUR] * n for _ in range(n)]
 
     for i in range(n):
         for j in range(n):
             if i % 2 != 0 and j % 2 != 0:
-                labyrinthe[i][j] = "."
+                labyrinthe[i][j] = LIBRE
     return labyrinthe
 
 
@@ -64,14 +65,14 @@ def creuser(labyrinthe, n):
             idx1
         ) != union_trouver_groupe.trouver_groupe(idx2):
             union_trouver_groupe.union(idx1, idx2)
-            labyrinthe[(x1 + x2) // 2][(y1 + y2) // 2] = "."
+            labyrinthe[(x1 + x2) // 2][(y1 + y2) // 2] = LIBRE
 
 
 def entree_sortie(labyrinthe, n):
-    labyrinthe[0][0] = "."
-    labyrinthe[n - 1][n - 1] = "."
-    labyrinthe[1][0] = "."
-    labyrinthe[n - 2][n - 1] = "."
+    labyrinthe[0][0] = LIBRE
+    labyrinthe[n - 1][n - 1] = LIBRE
+    labyrinthe[1][0] = LIBRE
+    labyrinthe[n - 2][n - 1] = LIBRE
 
 
 def generer_labyrinthe(n):
