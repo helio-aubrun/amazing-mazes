@@ -40,9 +40,8 @@ def obtenir_voisins(labyrinthe, position):
 
 
 def resoudre_labyrinthe(labyrinthe, depart_x, depart_y):
-    fin_x, fin_y = len(labyrinthe) - 1, len(labyrinthe[0]) - 1
     depart = (depart_x, depart_y)
-    arrivee = (fin_x, fin_y)
+    arrivee = (len(labyrinthe) - 1, len(labyrinthe[0]) - 1)
 
     openList = []
     closedList = set()
@@ -55,30 +54,28 @@ def resoudre_labyrinthe(labyrinthe, depart_x, depart_y):
     while openList:
         _, pos_actuelle, parent = heapq.heappop(openList)
 
-        if pos_actuelle in closedList:
-            continue
+        if pos_actuelle not in closedList:
+            
+            if parent:
+                labyrinthe[pos_actuelle[0]][pos_actuelle[1]] = "*"
 
-        if parent:
-            labyrinthe[pos_actuelle[0]][pos_actuelle[1]] = "*"
-
-        if pos_actuelle == arrivee:
-            reconstruire_chemin(labyrinthe, chemin, pos_actuelle)
-            labyrinthe[depart_x][depart_y] = "o"
-            return True
+            if pos_actuelle == arrivee:
+                reconstruire_chemin(labyrinthe, chemin, pos_actuelle)
+                labyrinthe[depart_x][depart_y] = "o"
+                return True
 
         closedList.add(pos_actuelle)
 
         for voisin in obtenir_voisins(labyrinthe, pos_actuelle):
             tentative_cout_g = cout_g[pos_actuelle] + 1
 
-            if voisin in closedList:
-                continue
-
-            if voisin not in cout_g or tentative_cout_g < cout_g[voisin]:
-                chemin[voisin] = pos_actuelle
-                cout_g[voisin] = tentative_cout_g
-                cout_f[voisin] = tentative_cout_g + heuristic(voisin, arrivee)
-                heapq.heappush(openList, (cout_f[voisin], voisin, pos_actuelle))
+            if voisin not in closedList:
+                
+                if voisin not in cout_g or tentative_cout_g < cout_g[voisin]:
+                    chemin[voisin] = pos_actuelle
+                    cout_g[voisin] = tentative_cout_g
+                    cout_f[voisin] = tentative_cout_g + heuristic(voisin, arrivee)
+                    heapq.heappush(openList, (cout_f[voisin], voisin, pos_actuelle))
 
     return False
 
