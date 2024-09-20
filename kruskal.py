@@ -31,28 +31,26 @@ def init_list_cells(labyrinthe, n):
 
 
 def cell_in_same_group(groups, cell_1, cell_2):
-    if not groups:  # Check if the list is empty
+    if not groups: 
         return False
     for sub_list in groups:
         if cell_1 in sub_list and cell_2 in sub_list:
             return True
-    return False  # If no matching sublist is found with both values, return False
+    return False 
 
 
 def merge_group(group, cell_1, cell_2):
     sublist1 = None
     sublist2 = None
 
-    # Search for the sublists containing var1 and var2
     for sublist in group:
         if cell_1 in sublist:
             sublist1 = sublist
         if cell_2 in sublist:
             sublist2 = sublist
 
-    # Merge the sublists if both are found and are distinct
     if sublist1 and sublist2 and sublist1 != sublist2:
-        merged_sublist = list(set(sublist1 + sublist2))  # Merge and remove duplicates
+        merged_sublist = list(set(sublist1 + sublist2))  
         group.remove(sublist1)
         group.remove(sublist2)
         group.append(merged_sublist)
@@ -116,20 +114,12 @@ def creat_labyrinthe(labyrinthe, n):
 
             pos_neud_2 = (pos_neud_1[0] + direction[0], pos_neud_1[1] + direction[1])
 
-            print (groups)
-
-            print (pos_neud_1)
-
-            print (pos_neud_2)
             
             if valide(pos_neud_1, pos_neud_2, labyrinthe, groups):
-
-                print ("test  2")
 
 
                 if is_cell_in_group(groups, pos_neud_1) and is_cell_in_group(groups, pos_neud_2):
 
-                    print ("test 3")
 
                     groups = merge_group(groups, pos_neud_1, pos_neud_2)
                     labyrinthe[pos_neud_1[0] + direction[0] // 2][pos_neud_1[1] + direction[1] // 2] = char_empty
@@ -137,7 +127,6 @@ def creat_labyrinthe(labyrinthe, n):
 
                 elif is_cell_in_group(groups, pos_neud_1) or is_cell_in_group(groups, pos_neud_2):
 
-                    print ("test 4")
 
                     if is_cell_in_group(groups, pos_neud_1):
                         groups = add_to_group(groups, pos_neud_1, pos_neud_2)
@@ -149,7 +138,6 @@ def creat_labyrinthe(labyrinthe, n):
 
                 else:
 
-                    print ("test 5")
 
                     groups.append([pos_neud_1, pos_neud_2])
                     labyrinthe[pos_neud_1[0] + direction[0] // 2][pos_neud_1[1] + direction[1] // 2] = char_empty
@@ -162,8 +150,7 @@ def creat_labyrinthe(labyrinthe, n):
             temp_direction = add_content_of_list_to_list (directions)
         if len (list_cells) == 0 :
             test_len = False
-     
-    print("fin")
+
 
 
 def entree_sortie(labyrinthe, n):
