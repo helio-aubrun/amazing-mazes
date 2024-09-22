@@ -83,13 +83,6 @@ def add_to_group(lst, target, new):
             sub_list.append(new)
     return lst
 
-def add_content_of_list_to_list (list_origin) :
-    temp_list = []
-    for item in list_origin :
-        temp_list.append (item)
-
-    return temp_list
-
 
 def creat_labyrinthe(labyrinthe, n):
     list_cells = init_list_cells(labyrinthe, n)
@@ -102,7 +95,7 @@ def creat_labyrinthe(labyrinthe, n):
 
         pos_neud_1 = list_cells[0]
 
-        temp_direction = add_content_of_list_to_list (directions)
+        temp_direction = [ item for item in directions]
 
         random.shuffle(temp_direction)
 
@@ -122,6 +115,7 @@ def creat_labyrinthe(labyrinthe, n):
 
 
                     groups = merge_group(groups, pos_neud_1, pos_neud_2)
+
                     labyrinthe[pos_neud_1[0] + direction[0] // 2][pos_neud_1[1] + direction[1] // 2] = char_empty
                     test = False
 
@@ -130,6 +124,7 @@ def creat_labyrinthe(labyrinthe, n):
 
                     if is_cell_in_group(groups, pos_neud_1):
                         groups = add_to_group(groups, pos_neud_1, pos_neud_2)
+
                     else:
                         groups = add_to_group(groups, pos_neud_2, pos_neud_1)
                     
@@ -140,6 +135,7 @@ def creat_labyrinthe(labyrinthe, n):
 
 
                     groups.append([pos_neud_1, pos_neud_2])
+
                     labyrinthe[pos_neud_1[0] + direction[0] // 2][pos_neud_1[1] + direction[1] // 2] = char_empty
                     test = False
 
@@ -147,7 +143,8 @@ def creat_labyrinthe(labyrinthe, n):
 
         if len(temp_direction) == 0:
             list_cells.pop (0)
-            temp_direction = add_content_of_list_to_list (directions)
+            temp_direction = [ item for item in directions]
+
         if len (list_cells) == 0 :
             test_len = False
 
