@@ -1,4 +1,5 @@
 import random
+import time
 
 directions = [(0, 2), (0, -2), (2, 0), (-2, 0)]
 pile = []
@@ -57,11 +58,16 @@ def sauvegarder_labyrinthe(labyrinthe, nom_fichier):
 def main():
     n = 2 * int(input("Entrez la taille du labyrinthe (n): ")) + 1
     nom_fichier = input("Entrez le nom du fichier de sortie: ")
+    start_time = time.time()
 
     labyrinthe = generer_labyrinthe(n)
 
     sauvegarder_labyrinthe(labyrinthe, nom_fichier)
     print(f"Labyrinthe généré et sauvegardé dans {nom_fichier}.")
+
+    end_time = time.time()
+    elapsed_time = end_time - start_time
+    print(f"\nTemps de résolution : {elapsed_time:.2f} secondes")
 
 
 if __name__ == "__main__":

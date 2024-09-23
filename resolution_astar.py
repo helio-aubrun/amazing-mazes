@@ -1,3 +1,4 @@
+import time
 import heapq
 
 
@@ -40,6 +41,7 @@ def obtenir_voisins(labyrinthe, position):
 
 
 def resoudre_labyrinthe(labyrinthe, depart_x, depart_y):
+
     depart = (depart_x, depart_y)
     arrivee = (len(labyrinthe) - 1, len(labyrinthe[0]) - 1)
 
@@ -89,6 +91,7 @@ def reconstruire_chemin(labyrinthe, chemin, pos_actuelle):
 def main():
     fichier_labyrinthe = input("Entrez le nom du fichier contenant le labyrinthe : ")
     fichier_sortie = input("Entrez le nom du fichier pour sauvegarder la solution : ")
+    start_time = time.time()
 
     labyrinthe = lire_labyrinthe(fichier_labyrinthe)
 
@@ -99,6 +102,10 @@ def main():
 
     ecrire_labyrinthe(labyrinthe, fichier_sortie)
     print(f"\nLabyrinthe résolu enregistré dans {fichier_sortie}")
+
+    end_time = time.time()
+    elapsed_time = end_time - start_time
+    print(f"\nTemps de résolution : {elapsed_time:.2f} secondes")
 
 
 if __name__ == "__main__":
