@@ -28,7 +28,10 @@ depuis 5 000 ans.
 
 # Preformance 
 
-Le generateur.py est limité à une taille de 45 noeuds
-Le  resolution.py est quand à lui limité à une taille de 41 noeuds
-Le kruskal.py met environ 20s pour generer un labyrinthe de taille 80
-Le astar.py met moins de 0.1s pour les tailles de 100 noeuds
+Le generateur.py est limité à une taille de 45 noeuds  
+Le  resolution.py est quand à lui limité à une taille de 41 noeuds  
+Le kruskal.py met environ 20s pour generer un labyrinthe de taille 80  
+Le astar.py met moins de 0.1s pour les tailles de 100 noeuds  
+
+# Affichage 
+Dans le dossier affichage vous trouverez des programmes qui affiche sur le terminal en temps réel la génération / résolution du labyrinthe
